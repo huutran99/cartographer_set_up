@@ -64,7 +64,7 @@ return options
 
 1. **map_frame**: ID frame trong ROS được sử dụng để xuất bản các bản đồ con (submaps), là parent frame của các frame khác như odom, base_footprint, base_link,... Thường được cấu hình là "map".
 2. **tracking_frame**: ID frame được theo dõi bởi thuật toán SLAM. Nếu sử dụng IMU nó phải ở đúng vị trí của nó, mặc dù nó có thể bị xoay. Thường được cấu hình là "imu_link".
-3. **published_fram**: ID frame được sử dụng làm child frame để xuất bản tư thế robot. Cấu hình là "odom" nếu "odom" khung odom được cung cấp bởi 1 bộ phân khác. Nếu không thường sẽ được đặt là "base_link".
+3. **published_fram**: ID frame được sử dụng làm child frame để xuất bản tư thế robot. Cấu hình là "odom" nếu "odom" khung odom được cung cấp bởi 1 bộ phận khác. Nếu không thường sẽ được đặt là "base_link".
 4. **odom_frame**: chỉ được sử dụng nếu "**provide_odom_frame** được đặt là true. Khung giữa **published_frame** và **map_frame** dùng để xuất bản kết quả SLAM. Thường được cấu hình là "odom".
 5. **provide_odom_frame**: nếu được đặt là true sẽ liên tục được xuất bản odom_frame trong map_frame.
 6. **publish_frame_projected_to_2d**: nếu được đặt là true, các tư thế sẽ chỉ xuất bản dưới dạng tọa độ 2D.
