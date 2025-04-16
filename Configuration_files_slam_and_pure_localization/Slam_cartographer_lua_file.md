@@ -62,17 +62,17 @@ return options
 
 ### Một số param cần thay đổi phù hợp với robot
 
-- 1. **map_frame**: ID frame trong ROS được sử dụng để xuất bản các bản đồ con (submaps), là parent frame của các frame khác như odom, base_footprint, base_link,... Thường được cấu hình là "map".
-- 2. **tracking_frame**: ID frame được theo dõi bởi thuật toán SLAM. Nếu sử dụng IMU nó phải ở đúng vị trí của nó, mặc dù nó có thể bị xoay. Thường được cấu hình là "imu_link".
-- 3. **published_fram**: ID frame được sử dụng làm child frame để xuất bản tư thế robot. Cấu hình là "odom" nếu "odom" khung odom được cung cấp bởi 1 bộ phân khác. Nếu không thường sẽ được đặt là "base_link".
-- 4. **odom_frame**: chỉ được sử dụng nếu "**provide_odom_frame** được đặt là true. Khung giữa **published_frame** và **map_frame** dùng để xuất bản kết quả SLAM. Thường được cấu hình là "odom".
-- 5. **provide_odom_frame**: nếu được đặt là true sẽ liên tục được xuất bản odom_frame trong map_frame.
-- 6. **publish_frame_projected_to_2d**: nếu được đặt là true, các tư thế sẽ chỉ xuất bản dưới dạng tọa độ 2D.
-- 7. **use_odometry**; nếu được đặt là true, dữ liệu odom sẽ đưa vào sử dụng trong SLAM.
-- 8. **num_laser_scans**: số lượng topic laser được sử dụng, topic thường được đặt là "scan" nếu 1 laser được sử dụng và "scan_1", "scan_2",v.v nếu nhiều laser được sử dụng.
-- 9. **TRAJECTORY_BUILDER_2D.submaps.num_range_data**: số lượt quét cần thiết để tạo ra 1 submap.
-- 10. **TRAJECTORY_BUILDER_2D.min_range**: phạm vi quét tối thiểu của laser được xem là hợp lệ để ghi nhận.
-- 11. **TRAJECTORY_BUILDER_2D.max_range**: phạm vi tối đa của laser được xem là hợp lệ để ghi nhận.
-- 12. **TRAJECTORY_BUILDER_2D.use_imu_data**: nếu được đặt là true, dữ liệu từ imu sẽ được đưa vào SLAM.
-- 13. **POSE_GRAPH.constraint_builder.min_score**: submap sẽ được giữ lại nếu điểm số của submap bằng hoặc lớn hơn điểm số được set(giá trị từ 0 đến 1).
+1. **map_frame**: ID frame trong ROS được sử dụng để xuất bản các bản đồ con (submaps), là parent frame của các frame khác như odom, base_footprint, base_link,... Thường được cấu hình là "map".
+2. **tracking_frame**: ID frame được theo dõi bởi thuật toán SLAM. Nếu sử dụng IMU nó phải ở đúng vị trí của nó, mặc dù nó có thể bị xoay. Thường được cấu hình là "imu_link".
+3. **published_fram**: ID frame được sử dụng làm child frame để xuất bản tư thế robot. Cấu hình là "odom" nếu "odom" khung odom được cung cấp bởi 1 bộ phân khác. Nếu không thường sẽ được đặt là "base_link".
+4. **odom_frame**: chỉ được sử dụng nếu "**provide_odom_frame** được đặt là true. Khung giữa **published_frame** và **map_frame** dùng để xuất bản kết quả SLAM. Thường được cấu hình là "odom".
+5. **provide_odom_frame**: nếu được đặt là true sẽ liên tục được xuất bản odom_frame trong map_frame.
+6. **publish_frame_projected_to_2d**: nếu được đặt là true, các tư thế sẽ chỉ xuất bản dưới dạng tọa độ 2D.
+7. **use_odometry**; nếu được đặt là true, dữ liệu odom sẽ đưa vào sử dụng trong SLAM.
+8. **num_laser_scans**: số lượng topic laser được sử dụng, topic thường được đặt là "scan" nếu 1 laser được sử dụng và "scan_1", "scan_2",v.v nếu nhiều laser được sử dụng.
+9. **TRAJECTORY_BUILDER_2D.submaps.num_range_data**: số lượt quét cần thiết để tạo ra 1 submap.
+10. **TRAJECTORY_BUILDER_2D.min_range**: phạm vi quét tối thiểu của laser được xem là hợp lệ để ghi nhận.
+11. **TRAJECTORY_BUILDER_2D.max_range**: phạm vi tối đa của laser được xem là hợp lệ để ghi nhận.
+12. **TRAJECTORY_BUILDER_2D.use_imu_data**: nếu được đặt là true, dữ liệu từ imu sẽ được đưa vào SLAM.
+13. **POSE_GRAPH.constraint_builder.min_score**: submap sẽ được giữ lại nếu điểm số của submap bằng hoặc lớn hơn điểm số được set(giá trị từ 0 đến 1).
 
