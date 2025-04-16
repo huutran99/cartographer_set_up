@@ -5,3 +5,4 @@ Hướng dẫn cài đặt Cartographer trên ROS Noetic hệ điều hành ubun
 # Trên ROS Noetic sử dụng các câu lệnh sau để cài đặt công cụ wstool và ninja.
 
 `sudo apt-get update`
+`sudo apt-get install -y python3-wstool python3-rosdep ninja-build stow`
