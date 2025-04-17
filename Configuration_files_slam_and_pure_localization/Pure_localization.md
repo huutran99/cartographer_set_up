@@ -68,5 +68,5 @@ return options
 
 ### Một số param cần thay đổi phù hợp với robot
 
-1. **max_submaps_to_keep**: Khi chạy pure_localization tối đa chỉ có 3 submap gần nhất được giữ lại để so sánh, việc này giúp tránh tình trạng giảm hiệu suất sử lý.
+1. **max_submaps_to_keep**: Khi chạy pure_localization tối đa chỉ có 3 submap gần nhất được giữ lại để so sánh, việc này giúp tránh tình trạng giảm hiệu suất xử lý.
 2. **POSE_GRAPH.constraint_builder.global_localization_min_score**: trong quá trình chạy localization, dữ liệu quét của laser sẽ tạo ra các submaps sau đó chúng so sánh với các submaps đã lưu trong quá trình vẽ bản đồ trước đó. Độ tương đồng chính là điểm số , nếu độ tương đồng lớn hơn hoặc bằng giá trị của "global_localization_min_score" thuật toán sẽ chấp nhận tư thế của robot và định vị lại.
