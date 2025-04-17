@@ -11,11 +11,11 @@ include "trajectory_builder.lua"
 options = {
   map_builder = MAP_BUILDER,
   trajectory_builder = TRAJECTORY_BUILDER,
-  map_frame = "map",
+  map_frame = "map", --default = "map"
   tracking_frame = "base_footprint",
-  published_frame = "odom", --odom
+  published_frame = "odom",  --default ="base_link"
   odom_frame = "odom",
-  provide_odom_frame = false, --false
+  provide_odom_frame = false,
   publish_frame_projected_to_2d = true,
   use_pose_extrapolator = true,
   use_odometry = false,
@@ -40,22 +40,23 @@ options = {
 MAP_BUILDER.use_trajectory_builder_2d = true
 
 TRAJECTORY_BUILDER_2D.submaps.num_range_data = 15
-TRAJECTORY_BUILDER_2D.min_range = 0.5  --0.5
-TRAJECTORY_BUILDER_2D.max_range = 25.	 --25.
+TRAJECTORY_BUILDER_2D.min_range = 0.5
+TRAJECTORY_BUILDER_2D.max_range = 25.
 TRAJECTORY_BUILDER_2D.missing_data_ray_length = 25.5
 TRAJECTORY_BUILDER_2D.use_imu_data = false 
 TRAJECTORY_BUILDER_2D.use_online_correlative_scan_matching = true
-TRAJECTORY_BUILDER_2D.real_time_correlative_scan_matcher.linear_search_window = 0.1  --0.1
+TRAJECTORY_BUILDER_2D.real_time_correlative_scan_matcher.linear_search_window = 0.1
 TRAJECTORY_BUILDER_2D.real_time_correlative_scan_matcher.translation_delta_cost_weight = 10
 TRAJECTORY_BUILDER_2D.real_time_correlative_scan_matcher.rotation_delta_cost_weight = 1e-1
---TRAJECTORY_BUILDER_2D.motion_filter.max_angle_radians=math.rad(0.2)
 
 -- New config
-POSE_GRAPH.constraint_builder.global_localization_min_score=0.62
+TRAJECTORY_BUILDER_2D.motion_filter.max_angle_radians=math.rad(0.2)
+TRAJECTORY_BUILDER_2D.num_accumulated_range_data=1
+POSE_GRAPH.constraint_builder.global_localization_min_score=0.65
 
 POSE_GRAPH.optimization_problem.huber_scale = 1e2
-POSE_GRAPH.optimize_every_n_nodes = 2 
-POSE_GRAPH.constraint_builder.min_score = 0.62
+POSE_GRAPH.optimize_every_n_nodes = 2 --default : 35
+POSE_GRAPH.constraint_builder.min_score = 0.65
 
 return options
 ```
@@ -65,7 +66,7 @@ return options
 1. **map_frame**: ID frame trong ROS được sử dụng để xuất bản các bản đồ con (submaps), là parent frame của các frame khác như odom, base_footprint, base_link,... Thường được cấu hình là "map".
 2. **tracking_frame**: ID frame được theo dõi bởi thuật toán SLAM. Nếu sử dụng IMU nó phải ở đúng vị trí của nó, mặc dù nó có thể bị xoay. Thường được cấu hình là "imu_link".
 3. **published_fram**: ID frame được sử dụng làm child frame để xuất bản tư thế robot. Cấu hình là "odom" nếu "odom" khung odom được cung cấp bởi 1 bộ phận khác. Nếu không thường sẽ được đặt là "base_link".
-4. **odom_frame**: chỉ được sử dụng nếu "**provide_odom_frame** được đặt là true. Khung giữa **published_frame** và **map_frame** dùng để xuất bản kết quả SLAM. Thường được cấu hình là "odom".
+4. **odom_frame**: chỉ được sử dụng nếu "provide_odom_frame" được đặt là true. Khung giữa "published_frame" và "map_frame" dùng để xuất bản kết quả SLAM. Thường được cấu hình là "odom".
 5. **provide_odom_frame**: nếu được đặt là true sẽ liên tục được xuất bản odom_frame trong map_frame.
 6. **publish_frame_projected_to_2d**: nếu được đặt là true, các tư thế sẽ chỉ xuất bản dưới dạng tọa độ 2D.
 7. **use_odometry**; nếu được đặt là true, dữ liệu odom sẽ đưa vào sử dụng trong SLAM.
@@ -75,4 +76,3 @@ return options
 11. **TRAJECTORY_BUILDER_2D.max_range**: phạm vi tối đa của laser được xem là hợp lệ để ghi nhận.
 12. **TRAJECTORY_BUILDER_2D.use_imu_data**: nếu được đặt là true, dữ liệu từ imu sẽ được đưa vào SLAM.
 13. **POSE_GRAPH.constraint_builder.min_score**: submap sẽ được giữ lại nếu điểm số của submap bằng hoặc lớn hơn điểm số được set(giá trị từ 0 đến 1).
-
